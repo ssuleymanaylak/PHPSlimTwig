@@ -1,0 +1,16 @@
+{
+    "name": "root/workspace",
+    "authors": [
+        {
+            "name": "SSuleyman Aylak",
+            "email": "ssuleymanaylak@hotmail.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "~1.13",
+        "slim/slim": "~2.6",
+        "twig/twig": "~1.18",
+        "slim/views": "0.1.*",
+        "swiftmailer/swiftmailer": "~5.4"
+    }
+}
