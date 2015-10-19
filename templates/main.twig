@@ -15,14 +15,9 @@
 </head>
 
 <body>
-<!--
-  <div id="feedback" class="success">
-    <h3>Success!</h3>
-    <p>You're reading all about Emerson.</p>
-  </div>
--->
 
-
+  {% include 'flash.twig' %}
+  
   <header>
     <h1>Ralph Waldo Emerson</h1>
     <nav>
@@ -42,7 +37,7 @@
 
   <footer>
     {% block footer %}
-      <p>A project from <strong><a href="https://github.com/ssuleymanaylak">S.Suleyman Aylak</a></strong></p>
+      <p>A project from <strong><a href="#">S.Suleyman Aylak</a></strong></p>
       <nav>
         <a href="{{ baseUrl() }}" class="selected">About</a>
         <a href="{{ siteUrl('/contact') }}">Contact</a>

@@ -9,6 +9,7 @@ date_default_timezone_set('America/New_York');
 $app = new \Slim\Slim(array(
 	'view' => new \Slim\Views\Twig(),
 ));
+$app->add(new \Slim\Middleware\SessionCookie());
 
 $view = $app->view();
 $view->parserOptions = array(
@@ -36,7 +37,7 @@ $app->post('/contact', function () use ($app) {
 		$cleanEmail = filter_var($email, FILTER_SANITIZE_EMAIL);
 		$cleanMsg = filter_var($msg, FILTER_SANITIZE_STRING);
 	} else {
-		//message the user that there was a problem
+		$app->flash('fail', 'All Fields Are Required.');
 		$app->redirect('/contact');
 	}
 
@@ -48,17 +49,17 @@ $app->post('/contact', function () use ($app) {
 	$message->setFrom(array(
 		$cleanEmail => $cleanName,
 	));
-	$message->setTo(array('ssuleymanaylak@hotmail.com'));
+	$message->setTo(array('ssa@example'));
 	$message->setBody($cleanMsg);
 
 	$result = $mailer->send($message);
 
 	if ($result > 0) {
-		// send a message that says thank you.
+		$app->flash('success', 'Thanks So Much! You are AWESOME!!!');
 		$app->redirect('/');
 
 	} else {
-		// send a message to the user that the message failed to send
+		$app->flash('fail', 'So Sorry, Something Went Wrong. Please Try Again!');
 		// log that there was an error
 		$app->redirect('/contact');
 	}
